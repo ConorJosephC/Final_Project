@@ -2,7 +2,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Style -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" id="bootstrap-css">
-<link rel="stylesheet" href="./public/src/css/style.css">
+<link rel="stylesheet" href="/src/css/card.css">
+<link rel="stylesheet" href="/src/css/style.css">
+<link rel="stylesheet" href="/src/css/footer.css">
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!-- JS -->
@@ -12,5 +14,70 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- Custom js -->
 <script src="/src/js/main.js"></script>
+
+
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("h1").fadeIn(3000);
+});
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$( "#clickme" ).click(function() {
+  $( "#container" ).fadeOut( 20000, function() {
+  });
+});
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).fadeToggle(2000);
+    });
+});
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").slideToggle("slow");
+    });
+});
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#flip2").click(function(){
+        $("#panel2").slideToggle("slow");
+    });
+});
+</script>
+
+<%# <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("img").addClass("load");
+  });​
+</script> %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("img").click(function(){
+        $("h4").fadeToggle(1000);
+        $("h5").fadeToggle(10000);
+    });
+});
+</script>
+
 
 <title>RoomMateFinder</title>

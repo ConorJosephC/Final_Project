@@ -10,6 +10,7 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const Op = Sequelize.Op;
 
 ////////////////////////////////////////////////////////////////////////////////
                 // BCRYPT PASSWORD
@@ -93,7 +94,7 @@ const User = sequelize.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    unique: false,
+    unique: false
   }
 },  {
    timestamps: false
@@ -102,11 +103,11 @@ const User = sequelize.define('user', {
  const Lifestyle = sequelize.define('lifestyle', {
    profession: {
      type: Sequelize.STRING,
-     unique: true
+     unique: false
    },
    sleep: {
      type: Sequelize.STRING,
-     unique:false
+     unique: false
    },
    smoking: {
      type: Sequelize.STRING,
@@ -247,8 +248,11 @@ app.get('/logout', (req,res)=>{
 app.get('/profile', (req, res)=> {
 
   const user = req.session.user;
+  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  const lifestyle = {profession: req.body.lifestyle_profession ,sleep: req.body.lifestyle_sleep,smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+
   if(user != null){
-  res.render('profile', {user: user})             // message: message
+  res.render('profile', {user: user, lifestyle: lifestyle})             // message: message
 }else{
     res.redirect('/')
 }
@@ -262,49 +266,131 @@ app.get('/lifestyle', (req, res) => {
   res.render('lifestyle', {user: user})
 })
 
-app.post('/lifestyle', (req, res) => {
-  const {user} = req.session;
-  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-  console.log("profession");
-  Lifestyle.findOne({
-    where: {
-      profession: lifestyle_profession,
-      sleep: lifestyle_sleep,
-      smoking: lifestyle_smoking,
-      budget:lifestyle_budget,
-      duration: lifestyle_duration,
-    }
-  })
-  // .then(time => {
-  //   return Offer.findAll({
-  //     where: {
-  //       timeId: time.id
-  //     },
-  //     include: [{model: Business}, {model: Time}]
-  //   })
-  // })
-  .then((lifestyle)=>{
-    res.render('lifestyleconfirmation', {user: user})
-  })
-  .catch((err)=>{
-    console.error(err);
-  });
-})
-
 ////////////////////////////////////////////////////////////////////////////////
 // LIFESTYLECONFIRMATION
 
-app.get('/lifestyleconfirmation', (req, res) => {
-  const {user} = req.session;
-  res.render('lifestyleconfirmation', {user: user});
+app.post('/lifestyleconfirmation', (req, res) => {
+  const user = req.session.user;
+  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  const lifestyle = {profession: req.body.lifestyle_profession ,sleep: req.body.lifestyle_sleep,smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+
+  res.render('lifestyleconfirmation', {user: user, lifestyle: lifestyle});
 })
+
+////////////////////////////////////////////////////////////////////////////////
+// LIFESTYLE ADDED TO DB
+
+app.post('/lifestyle', (req, res) => {
+    const user = req.session.user;
+    const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+
+    Lifestyle.create({
+      profession: lifestyle_profession,
+      sleep: lifestyle_sleep,
+      smoking: lifestyle_smoking,
+      budget: lifestyle_budget,
+      duration: lifestyle_duration,
+      userId: user.id,
+    })
+    .then((lifestyle)=>{
+      res.redirect('/profile')
+    })
+    .catch((err)=>{
+      console.error(err);
+    });
+})
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // MATCHES
 
 app.get('/matches', (req, res) => {
-  res.render('matches');
+  const user = req.session.user;
+  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
+
+Lifestyle.findOne({
+  where: {
+    userId: user.id
+  },
+  include: [{
+    model: User
+  }]
 })
+
+.then((user_lifestyle)=>{
+  Lifestyle.findAll({
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      profession: user_lifestyle.profession,
+      sleep: user_lifestyle.sleep,
+      smoking: user_lifestyle.smoking,
+      budget: user_lifestyle.budget,
+      duration: user_lifestyle.duration,
+    }, include:[{
+        model: User
+      }]
+  })
+.then((matches)=>{
+  console.log(JSON.stringify(matches))
+  res.render('matches', {user: user, user_lifestyle: user_lifestyle, matches: matches})
+})
+.catch(err => console.error(err))
+})
+})
+
+//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
+//   // const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+//   // const lifestyle = {profession: req.body.lifestyle_profession, sleep: req.body.lifestyle_sleep, smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+lifestyle.profession)
+//
+//   for (let i = 0; i < lifestyle.length; i++) {
+//     if (req.body.lifestyle_profession == lifestyle[i].profession &&
+//         req.body.lifestyle_sleep == lifestyle[i].sleep &&
+//         req.body.lifestyle_smoking == lifestyle[i].smoking &&
+//         req.body.lifestyle_budget == lifestyle[i].budget &&
+//         req.body.lifestyle_duration == lifestyle[i].duration) {
+//        let match = lifestyle[i].user;
+//
+// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+match)
+//         res.render('matches', {
+//           user: match,
+//         });
+//       }}
+// })
+
+// app.post('/matches', (req, res) => {
+//   const user = req.session.user;
+//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
+//   const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+//   const lifestyle = {profession: req.body.lifestyle_profession, sleep: req.body.lifestyle_sleep, smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+lifestyle)
+//
+//   for (let i = 0; i < lifestyle.length; i++) {
+//     if (req.body.lifestyle_profession == lifestyle[i].profession &&
+//         req.body.lifestyle_sleep == lifestyle[i].sleep &&
+//         req.body.lifestyle_smoking == lifestyle[i].smoking &&
+//         req.body.lifestyle_budget == lifestyle[i].budget &&
+//         req.body.lifestyle_duration == lifestyle[i].duration) {
+//        let match = lifestyle[i].user;
+//
+// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+match)
+//         res.render('matches', {
+//           user: match,
+//         });
+//       }}
+//   })
+
+
+  //     res.render('matched', {match: matchedUser, user: user, lifestyle: lifestyle});
+  //   }
+  // }
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // MESSAGING

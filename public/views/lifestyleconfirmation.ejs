@@ -1,0 +1,73 @@
+<html>
+
+<head>
+  <%- include partials/head.ejs %>
+</head>
+
+<body>
+
+<header>
+      <%- include partials/header.ejs %>
+</header>
+
+    <div class="texttitle">
+      <strong>Please answer the following questions</strong>
+    </div>
+
+    <table class="show_all_posts">
+
+      <h1>Is the following information correct?</h1>
+
+      <thead scope="row">
+        <tr>
+          <td class="column_1">Profession:</td>
+          <td class="column_1">Sleep:</td>
+          <td class="column_1">Smoking:</td>
+          <td class="column_1">Budget:</td>
+          <td class="column_1">Duration:</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="column_3">
+            <%= lifestyle.profession %>
+          </td>
+          <td class="column_3">
+            <%= lifestyle.sleep %>
+          </td>
+          <td class="column_3">
+            <%= lifestyle.smoking %>
+          </td>
+          <td class="column_3">
+            <%= lifestyle.budget %>
+          </td>
+          <td class="column_3">
+            <%= lifestyle.duration %>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <h1>If this selection is correct please hit Confirm otherwise return to the previous page <a href="/lifestyle">here</a></h1>
+
+    <div class="col-lg-4 col-lg-offset-4">
+      <form class="lifestyleconfirmation" id="lifestyleconfirmation" action="/lifestyle" method="POST">
+        <input type="text" name="lifestyle_profession" value="<%= lifestyle.profession %>" hidden>
+        <input type="text" name="lifestyle_sleep" value="<%= lifestyle.sleep %>" hidden>
+        <input type="text" name="lifestyle_smoking" value="<%= lifestyle.smoking %>" hidden>
+        <input type="text" name="lifestyle_budget" value="<%= lifestyle.budget %>" hidden>
+        <input type="text" name="lifestyle_duration" value="<%= lifestyle.duration %>" hidden>
+        <input type="submit" value="Confirm" class="btn btn-success btn-sm" />
+      </form>
+    </div>
+
+    <br>
+
+<footer>
+  <%- include partials/footer.ejs %>
+</footer>
+
+</body>
+</html>

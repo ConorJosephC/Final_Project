@@ -10,14 +10,61 @@
  <%- include partials/header.ejs %>
  </header>
 
-<h1>Profile</h1>
+<!-- <div class="texttitle"><strong>Profile</strong></div> -->
+<!-- <h1>Hello World</h1> -->
+<h2>Welcome to your profile <%= user.username %></h2>
+<h2>What would you like to do?</h2>
 
 <ul>
-  <li><a href="/lifestyle">Lifestyle Quiz</a></li>
-  <li><a href="/matches">Matches</a></li>
-    <li><a href="/messages">Messages</a></li>
-    	<h6><a href="/logout" target="_blank">Logout</a></h6>
+    	<li><a href="/logout" target="_blank">Logout</a></li>
 </ul>
+
+<div class="container">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title"><strong>1. Lifestyle</strong></h1><br>
+        <p class="card-text">Please answer 5 questions about your lifestyle.<br><br>
+          We would like to know about:<br>
+          1. Your profession<br>
+          2. If you are a morning person<br>
+          3. If you smoke<br>
+          4. Your estimated budget<br>
+          5. How long do you plan on staying?
+          <span class="bold red"></span></p>
+      </div>
+      <div class="card-footer"><a href="/lifestyle"><button class="btn btn-hero btn-lg" role="button">Lifestyle Quiz</button></a>
+        <small class="text-muted"></small>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title"><strong>2. Matches</strong></h1><br>
+        <p class="card-text">
+The more answers you have in common, the stronger the recommendation that another user would be a good (or excellent) room<span class="bold red">mate</span>.<br><br>
+Then you can contact the matching users and arrange to meet up if you wish.
+  </p>
+      </div>
+      <div class="card-footer"><a href="/matches"><button class="btn btn-hero btn-lg" role="button">Matches</button></a>
+        <small class="text-muted"></small>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title"><strong>3. Messages</strong></h1><br>
+        <p class="card-text">WE OFFER A LONG TERM SUBSCRIPTION PLAN FOR OUR SERVICE<br><br>
+    WANT TO BUILD A LONG TERM BUSINESS PARTNERSHIP?<br><br>IT'S A <span class="bold orange">DONE DEAL</span></p>
+      </div>
+      <div class="card-footer"> <a href="/messages"><button class="btn btn-hero btn-lg" role="button">Messages</button></a>
+        <small class="text-muted"></small>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 
 <footer>
  <%- include partials/footer.ejs %>
