@@ -330,7 +330,53 @@ Lifestyle.findOne({
       smoking: user_lifestyle.smoking,
       budget: user_lifestyle.budget,
       duration: user_lifestyle.duration,
-    }, include:[{
+    },
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      profession: user_lifestyle.profession,
+      sleep: user_lifestyle.sleep,
+      smoking: user_lifestyle.smoking,
+      budget: user_lifestyle.budget,
+    },
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      profession: user_lifestyle.profession,
+      sleep: user_lifestyle.sleep,
+      smoking: user_lifestyle.smoking,
+      duration: user_lifestyle.duration,
+    },
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      profession: user_lifestyle.profession,
+      sleep: user_lifestyle.sleep,
+      budget: user_lifestyle.budget,
+      duration: user_lifestyle.duration,
+    },
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      profession: user_lifestyle.profession,
+      smoking: user_lifestyle.smoking,
+      budget: user_lifestyle.budget,
+      duration: user_lifestyle.duration,
+    },
+    where: {
+      id: {
+        [Op.ne]: user_lifestyle.id
+      },
+      sleep: user_lifestyle.sleep,
+      smoking: user_lifestyle.smoking,
+      budget: user_lifestyle.budget,
+      duration: user_lifestyle.duration,
+    },
+     include:[{
         model: User
       }]
   })

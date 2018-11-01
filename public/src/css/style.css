@@ -2,17 +2,65 @@ body  {
 background-color: white;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-top: 100px;
-right: 50px;
-font-size: 18px;
-cursor: pointer;
+/* Home Page Fade on logo */
+
+#cf2 {
+  position:relative;
+  height:281px;
+  width:450px;
+  /* margin:10 auto; */
+}
+#cf2 img {
+  position:absolute;
+  /* left:10px; */
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+#cf2 img.transparent {
+opacity:0;
+}
+#cf_onclick {
+cursor:crosshair;
 }
 
 img {
+  /* max-width: 100%; */
+  /* height: auto; */
+  position: fized;
+top: 50px;
+right: 5px;
+/* font-size: 18px; */
+/* cursor: pointer; */
+}
+
+.shadow {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
+/* .center {
+    position: absolute;
+    left: 0;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+} */
+
+img {
+    width: 767;
+    height: 400;
+}
+
+
+/* img {
     opacity: 0.1;
 
     -webkit-transition: opacity 2s ease-in;
@@ -24,7 +72,9 @@ img {
 
 img.load {
     opacity: 1;
-}
+} */
+
+/* h1 - h6 */
 
 h1 {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
@@ -34,7 +84,7 @@ h1 {
   font-weight: 700;
   line-height: 26.4px;
   text-align: center;
-    background-color:  rgba(0, 0, 0, 0.4);
+    /* background-color:  rgba(0, 0, 0, 0.4); */
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -51,6 +101,7 @@ h1 {
 
 h2 {
   text-align: center;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   margin-top: 5px;
   margin-bottom: 5px
 }
@@ -72,8 +123,15 @@ h4 {
 h5 {
   font-size: 14px;
   color: black;
+  text-align: left;
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
     padding-left: 100px;
+}
+
+h6 {
+  color: white;
+  font-size: 12px;
+  text-align: left;
 }
 
 p {
@@ -150,6 +208,20 @@ table table-hover {
   opacity: 0.1;
   width: 400px;
   height: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 5%;
+}
+
+.fadedkeyright {
+  background-image: url(/src/img/tulip_key_xx.png);
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  opacity: 0.1;
+  width: 150px;
+  height: 300px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -587,11 +659,12 @@ table table-hover {
 
 .table-dark {
     color: white;
-    background-color: #212529;
+    background-color: grey;
     width: 90%;
     margin-right: 5%;
     margin-left: 5%;
-    background-color:  rgba(0, 0, 0, 0.4)
+    background-color:  rgba(0, 0, 0, 1);
+    padding: 2px;
 }
 
 .row {
@@ -712,17 +785,18 @@ table table-hover {
 padding: 5px;
 font-family: helvetica, sans-serif;
 text-align: center;
-    background-color: grey;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
 /* border: solid 2px #DE6131; */
 cursor: pointer;
-margin-left: 10%;
-margin-right: 30%;
+margin-left: 5%;
+margin-right: 18%;
 }
 
 #panel, #panel2, #panel3, #panel4 {
 padding: 5px;
 font-family: helvetica, sans-serif;
+background-color: rgba(0, 0, 0, 0.6);
 display: none;
 text-align: left;
 }
@@ -731,16 +805,13 @@ text-align: left;
 background-size: cover;
 }
 
-
-
-
 .fade {
-   opacity: 1;
+   opacity: 0;
    transition: opacity .25s ease-in-out;
    -moz-transition: opacity .25s ease-in-out;
    -webkit-transition: opacity .25s ease-in-out;
    }
 
    .fade:hover {
-      opacity: 0.5;
+      opacity: 1;
       }

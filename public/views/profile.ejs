@@ -12,12 +12,8 @@
 
 <!-- <div class="texttitle"><strong>Profile</strong></div> -->
 <!-- <h1>Hello World</h1> -->
-<h2>Welcome to your profile <%= user.username %></h2>
-<h2>What would you like to do?</h2>
-
-<ul>
-    	<li><a href="/logout" target="_blank">Logout</a></li>
-</ul>
+<!-- <h2>Welcome to your profile <%= user.username %></h2> -->
+  <div class="texttitle"><strong>WELCOME TO YOUR PROFILE <%= user.username %></strong></div>
 
 <div class="container">
   <div class="card-deck">
@@ -41,7 +37,7 @@
       <div class="card-body">
         <h1 class="card-title"><strong>2. Matches</strong></h1><br>
         <p class="card-text">
-The more answers you have in common, the stronger the recommendation that another user would be a good (or excellent) room<span class="bold red">mate</span>.<br><br>
+The more answers you have in common, the stronger the recommendation that another user would be a good (or excellent) room<span class="bold red">mate</span><br><br>
 Then you can contact the matching users and arrange to meet up if you wish.
   </p>
       </div>
@@ -52,8 +48,8 @@ Then you can contact the matching users and arrange to meet up if you wish.
     <div class="card">
       <div class="card-body">
         <h1 class="card-title"><strong>3. Messages</strong></h1><br>
-        <p class="card-text">WE OFFER A LONG TERM SUBSCRIPTION PLAN FOR OUR SERVICE<br><br>
-    WANT TO BUILD A LONG TERM BUSINESS PARTNERSHIP?<br><br>IT'S A <span class="bold orange">DONE DEAL</span></p>
+        <p class="card-text">Communicate with other users who you have matched with<br><br>
+    See your conversation history<br><br></p>
       </div>
       <div class="card-footer"> <a href="/messages"><button class="btn btn-hero btn-lg" role="button">Messages</button></a>
         <small class="text-muted"></small>
@@ -63,7 +59,9 @@ Then you can contact the matching users and arrange to meet up if you wish.
 </div>
 </div>
 
-
+<ul>
+      <a href="/logout"><button class="btn btn-hero btn-sm" role="button">Logout</button></a>
+</ul>
 
 
 <footer>
