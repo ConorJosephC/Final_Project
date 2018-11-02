@@ -114,10 +114,10 @@ h3 {
 
 h4 {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-
+  text-align: center;
   color: black;
-  font-size: 48px;
-  padding-left: 100px;
+  font-size: 18px;
+  /* padding-left: 100px; */
 }
 
 h5 {
@@ -783,6 +783,7 @@ table table-hover {
 
 #panel, #panel2, #panel3, #panel4, #flip, #flip2, #flip3, #flip4 {
 padding: 5px;
+font-size: 20px;
 font-family: helvetica, sans-serif;
 text-align: center;
     background-color: rgba(0, 0, 0, 0.8);
@@ -790,7 +791,7 @@ text-align: center;
 /* border: solid 2px #DE6131; */
 cursor: pointer;
 margin-left: 5%;
-margin-right: 18%;
+margin-right: 5%;
 }
 
 #panel, #panel2, #panel3, #panel4 {
@@ -814,4 +815,34 @@ background-size: cover;
 
    .fade:hover {
       opacity: 1;
+
+
+      .column_1 {
+        width: 200px;
+          margin-bottom: 10px;
+          padding: 8px;
       }
+
+      .column_2 {
+        width: 400px;
+            margin-bottom: 10px;
+            padding: 8px;
+      }
+
+      .column_3 {
+        width: 200px;
+            margin-bottom: 10px;
+            padding: 4px;
+      }
+
+      .column_4 {
+        width: 400px;
+            margin-bottom: 10px;
+            padding: 4px;
+      }
+
+      /* .column_5 {
+        width: 100px;
+            margin-bottom: 10px;
+            padding: 4px;
+      } */

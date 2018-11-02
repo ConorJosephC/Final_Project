@@ -300,8 +300,6 @@ app.post('/lifestyle', (req, res) => {
     });
 })
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
 // MATCHES
 
@@ -325,64 +323,91 @@ Lifestyle.findOne({
       id: {
         [Op.ne]: user_lifestyle.id
       },
+      // profession: user_lifestyle.profession,
+      // sleep: user_lifestyle.sleep,
+      // smoking: user_lifestyle.smoking,
+      // budget: user_lifestyle.budget,
+      // duration: user_lifestyle.duration,
+
+     [Op.or]: [{
       profession: user_lifestyle.profession,
       sleep: user_lifestyle.sleep,
       smoking: user_lifestyle.smoking,
       budget: user_lifestyle.budget,
-      duration: user_lifestyle.duration,
-    },
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
-      },
-      profession: user_lifestyle.profession,
-      sleep: user_lifestyle.sleep,
-      smoking: user_lifestyle.smoking,
-      budget: user_lifestyle.budget,
-    },
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
-      },
+    },{
       profession: user_lifestyle.profession,
       sleep: user_lifestyle.sleep,
       smoking: user_lifestyle.smoking,
       duration: user_lifestyle.duration,
-    },
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
-      },
-      profession: user_lifestyle.profession,
-      sleep: user_lifestyle.sleep,
-      budget: user_lifestyle.budget,
-      duration: user_lifestyle.duration,
-    },
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
-      },
-      profession: user_lifestyle.profession,
-      smoking: user_lifestyle.smoking,
-      budget: user_lifestyle.budget,
-      duration: user_lifestyle.duration,
-    },
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
-      },
-      sleep: user_lifestyle.sleep,
-      smoking: user_lifestyle.smoking,
-      budget: user_lifestyle.budget,
-      duration: user_lifestyle.duration,
-    },
+    },{
+        profession: user_lifestyle.profession,
+        sleep: user_lifestyle.sleep,
+        budget: user_lifestyle.budget,
+        duration: user_lifestyle.duration,
+    },{
+        profession: user_lifestyle.profession,
+        smoking: user_lifestyle.smoking,
+        budget: user_lifestyle.budget,
+        duration: user_lifestyle.duration,
+    },{
+        sleep: user_lifestyle.sleep,
+        smoking: user_lifestyle.smoking,
+        budget: user_lifestyle.budget,
+        duration: user_lifestyle.duration,
+    }]
+  }, include:[{
+        model: User
+      }]
+  })
+.then((matches)=>{
+  console.log(JSON.stringify(matches))
+
+  if (matches === null) {
+    res.render('nomatch', {user: user, user_lifestyle: user_lifestyle, matches: matches})
+  }
+  else {
+  res.render('matches', {user: user, user_lifestyle: user_lifestyle, matches: matches})
+}
+})
+.catch(err => console.error(err))
+})
+})
+
+////////////////////////////////////////////////////////////////////////////////
+// NO MATCH
+
+app.get('/nomatch', (req, res) => {
+  const {user} = req.session;
+  res.render('nomatch', {user: user})
+})
+
+////////////////////////////////////////////////////////////////////////////////
+// ALL LIFESTYLES
+
+app.get('/everylifestyle', (req, res) => {
+  const user = req.session.user;
+  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  const lifestyle = req.body.lifestyle;
+  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
+
+Lifestyle.findOne({
+  where: {
+    userId: user.id
+  },
+  include: [{
+    model: User
+  }]
+})
+
+.then((user_lifestyle)=>{
+  Lifestyle.findAll({
      include:[{
         model: User
       }]
   })
 .then((matches)=>{
   console.log(JSON.stringify(matches))
-  res.render('matches', {user: user, user_lifestyle: user_lifestyle, matches: matches})
+  res.render('everylifestyle', {user: user, user_lifestyle: user_lifestyle, matches: matches, lifestyle: lifestyle})
 })
 .catch(err => console.error(err))
 })
@@ -434,8 +459,6 @@ Lifestyle.findOne({
   //     res.render('matched', {match: matchedUser, user: user, lifestyle: lifestyle});
   //   }
   // }
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
