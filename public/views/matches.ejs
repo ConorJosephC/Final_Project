@@ -1,63 +1,58 @@
 <html>
 
 <head>
- <%- include partials/head.ejs %>
-</head><!-- /head -->
+  <%- include partials/head.ejs %>
+</head>
 
 <body>
 
- <header>
- <%- include partials/header.ejs %>
- </header>
-
-<!-- <div class="logosmall"></div> -->
+  <header>
+    <%- include partials/header.ejs %>
+  </header>
 
   <div class="texttitle"><strong>HERE ARE YOUR IDEAL HOUSEMATES <%- user.username %></strong></div>
 
-<!-- <table class="table table-dark"> -->
-<table class="table table-dark">
-  <thead class="row">
-    <tr>
-      <td class="column_1">Username</td>
-      <td class="column_2">About</td>
-    </tr>
-  </thead>
+  <table class="table table-dark">
+    <thead class="row">
+      <tr>
+        <td class="column_1">Username</td>
+        <td class="column_2">About</td>
+      </tr>
+    </thead>
 
-<tbody>
-  <tr>
-    <% for (let i= 0; i < matches.length; i++) { %>
-    <td class="column_3">
-      <%- matches[i].user.username %>
-    </td>
-    <td class="column_4">
-      <%- matches[i].user.about %>
-    </td>
-    <td class="column_3">
-      <a href>Message</a>
-    </td>
-  </tr>
+    <tbody>
+      <tr>
+        <% for (let i= 0; i < matches.length; i++) { %>
+        <td class="column_3">
+          <%- matches[i].user.username %>
+        </td>
+        <td class="column_4">
+          <%- matches[i].user.about %>
+        </td>
+        <td class="column_3">
+          <a href>Message</a>
+        </td>
+      </tr>
 
+      <% } %>
+    </tbody>
+  </table>
 
-  <% } %>
-</tbody>
-</table>
+  <h2>Check back every day for new matches</h2><br>
 
-<h2>Check back every day for new matches</h2><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-<br>
-    <br>
-        <br>
-            <br>
-                <br>
-                      <br>
-                          <br>
-                              <br>
-                                  <br>
-
-
-<footer>
- <%- include partials/footer.ejs %>
-</footer>
+  <footer>
+    <%- include partials/footer.ejs %>
+  </footer>
 
 </body>
 

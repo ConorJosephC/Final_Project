@@ -6,77 +6,78 @@
 
 <body>
 
-<header>
-      <%- include partials/header.ejs %>
-</header>
+  <header>
+    <%- include partials/header.ejs %>
+  </header>
 
-    <div class="texttitle">
-      <strong>PLEASE CONFIRM YOUR ANSWERS</strong>
-    </div>
-    <br>
+  <div class="texttitle">
+    <strong>PLEASE CONFIRM YOUR ANSWERS</strong>
+  </div>
+  <br>
 
-    <table class="table table-dark">
+  <table class="table table-dark">
 
-      <h2>Is the following information correct?</h2>
+    <h2>Is the following information correct?</h2>
 
-      <thead scope="row">
-        <tr>
-          <td class="column_1">Profession:</td>
-          <td class="column_1">Sleep:</td>
-          <td class="column_1">Smoking:</td>
-          <td class="column_1">Budget:</td>
-          <td class="column_1">Duration:</td>
-        </tr>
-      </thead>
+    <thead scope="row">
+      <tr>
+        <td class="column_1">Profession:</td>
+        <td class="column_1">Sleep:</td>
+        <td class="column_1">Smoking:</td>
+        <td class="column_1">Budget:</td>
+        <td class="column_1">Duration:</td>
+      </tr>
+    </thead>
 
-      <tbody>
-        <tr>
-          <td class="column_3">
-            <%= lifestyle.profession %>
-          </td>
-          <td class="column_3">
-            <%= lifestyle.sleep %>
-          </td>
-          <td class="column_3">
-            <%= lifestyle.smoking %>
-          </td>
-          <td class="column_3">
-            <%= lifestyle.budget %>
-          </td>
-          <td class="column_3">
-            <%= lifestyle.duration %>
-          </td>
-        </tr>
-      </tbody>
+    <tbody>
+      <tr>
+        <td class="column_3">
+          <%= lifestyle.profession %>
+        </td>
+        <td class="column_3">
+          <%= lifestyle.sleep %>
+        </td>
+        <td class="column_3">
+          <%= lifestyle.smoking %>
+        </td>
+        <td class="column_3">
+          <%= lifestyle.budget %>
+        </td>
+        <td class="column_3">
+          <%= lifestyle.duration %>
+        </td>
+      </tr>
+    </tbody>
 
-    </table>
+  </table>
 
-    <h2>If this selection is correct please press Confirm otherwise return to the previous page <a href="/lifestyle">here</a></h2>
+  <h2>If this selection is correct please press Confirm otherwise return to the previous page <a href="/lifestyle">here</a></h2>
 
-    <div class="col-lg-4 col-lg-offset-4">
-      <form class="lifestyleconfirmation" id="lifestyleconfirmation" action="/lifestyle" method="POST">
-        <input type="text" name="lifestyle_profession" value="<%= lifestyle.profession %>" hidden>
-        <input type="text" name="lifestyle_sleep" value="<%= lifestyle.sleep %>" hidden>
-        <input type="text" name="lifestyle_smoking" value="<%= lifestyle.smoking %>" hidden>
-        <input type="text" name="lifestyle_budget" value="<%= lifestyle.budget %>" hidden>
-        <input type="text" name="lifestyle_duration" value="<%= lifestyle.duration %>" hidden>
-        <input type="submit" value="Confirm" class="btn btn-success btn-sm" />
+  <div class="col-lg-4 col-lg-offset-4">
+    <form class="lifestyleconfirmation" id="lifestyleconfirmation" action="/lifestyle" method="POST">
+      <input type="text" name="lifestyle_profession" value="<%= lifestyle.profession %>" hidden>
+      <input type="text" name="lifestyle_sleep" value="<%= lifestyle.sleep %>" hidden>
+      <input type="text" name="lifestyle_smoking" value="<%= lifestyle.smoking %>" hidden>
+      <input type="text" name="lifestyle_budget" value="<%= lifestyle.budget %>" hidden>
+      <input type="text" name="lifestyle_duration" value="<%= lifestyle.duration %>" hidden>
+      <input type="submit" value="Confirm" class="btn btn-hero btn-sm" />
       </form>
-    </div>
+  </div>
 
-    <br>
-        <br>
-            <br>
-                <br>
-                    <br>
-                          <br>
-                              <br>
-                                  <br>
-                                      <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
-<footer>
-  <%- include partials/footer.ejs %>
-</footer>
+  <footer>
+    <%- include partials/footer.ejs %>
+  </footer>
 
 </body>
+
 </html>

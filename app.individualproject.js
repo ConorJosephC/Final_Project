@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-                // DEPENDENCIES
+// DEPENDENCIES
 ////////////////////////////////////////////////////////////////////////////////
 
 const Sequelize = require('sequelize');
@@ -13,7 +13,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const Op = Sequelize.Op;
 
 ////////////////////////////////////////////////////////////////////////////////
-                // BCRYPT PASSWORD
+// BCRYPT PASSWORD
 ////////////////////////////////////////////////////////////////////////////////
 
 const bcrypt = require('bcrypt');
@@ -21,23 +21,23 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 ////////////////////////////////////////////////////////////////////////////////
-                // CONFIGURE DEPENDENCIES
+// CONFIGURE DEPENDENCIES
 ////////////////////////////////////////////////////////////////////////////////
 
 const sequelize = new Sequelize("roommatefinder", process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-    host: 'localhost',
-    dialect: 'postgres'
+  host: 'localhost',
+  dialect: 'postgres'
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-                // CONNECT WITH TEMPLATE ENGINE FOLDER
+// CONNECT WITH TEMPLATE ENGINE FOLDER
 ////////////////////////////////////////////////////////////////////////////////
 
 app.set('views', './public/views');
 app.set('view engine', 'ejs');
 
 ////////////////////////////////////////////////////////////////////////////////
-                // SET UP SESSION
+// SET UP SESSION
 ////////////////////////////////////////////////////////////////////////////////
 
 app.use(session({
@@ -52,19 +52,21 @@ app.use(session({
 }))
 
 ////////////////////////////////////////////////////////////////////////////////
-                // CONNECT WITH PUBLIC FOLDER
+// CONNECT WITH PUBLIC FOLDER
 ////////////////////////////////////////////////////////////////////////////////
 
 app.use(express.static('./public'));
 
 ////////////////////////////////////////////////////////////////////////////////
-                // SET UP BODY PARSER
+// SET UP BODY PARSER
 ////////////////////////////////////////////////////////////////////////////////
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 ////////////////////////////////////////////////////////////////////////////////
-                // MODELS DEFINITION
+// MODELS DEFINITION
 ////////////////////////////////////////////////////////////////////////////////
 
 const User = sequelize.define('user', {
@@ -74,7 +76,7 @@ const User = sequelize.define('user', {
   },
   firstname: {
     type: Sequelize.STRING,
-    unique:false
+    unique: false
   },
   lastname: {
     type: Sequelize.STRING,
@@ -96,44 +98,52 @@ const User = sequelize.define('user', {
     type: Sequelize.STRING,
     unique: false
   }
-},  {
-   timestamps: false
- });
+}, {
+  timestamps: false
+});
 
- const Lifestyle = sequelize.define('lifestyle', {
-   profession: {
-     type: Sequelize.STRING,
-     unique: false
-   },
-   sleep: {
-     type: Sequelize.STRING,
-     unique: false
-   },
-   smoking: {
-     type: Sequelize.STRING,
-     unique: false
-   },
-   budget: {
-     type: Sequelize.STRING,
-     unique: false
-   },
-   duration: {
-     type: Sequelize.STRING,
-     unique: false
-   },
- }, {
-    timestamps: false
-  });
-
-////////////////////////////////////////////////////////////////////////////////
-                // TABLE RELATIONSHIPS/ASSOCIATION
-////////////////////////////////////////////////////////////////////////////////
-
-User.hasOne(Lifestyle, { foreignKey: { allowNull: false } });
-Lifestyle.belongsTo(User, { foreignKey: { allowNull: false } });
+const Lifestyle = sequelize.define('lifestyle', {
+  profession: {
+    type: Sequelize.STRING,
+    unique: false
+  },
+  sleep: {
+    type: Sequelize.STRING,
+    unique: false
+  },
+  smoking: {
+    type: Sequelize.STRING,
+    unique: false
+  },
+  budget: {
+    type: Sequelize.STRING,
+    unique: false
+  },
+  duration: {
+    type: Sequelize.STRING,
+    unique: false
+  },
+}, {
+  timestamps: false
+});
 
 ////////////////////////////////////////////////////////////////////////////////
-                // ROUTES
+// TABLE RELATIONSHIPS/ASSOCIATION
+////////////////////////////////////////////////////////////////////////////////
+
+User.hasOne(Lifestyle, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+Lifestyle.belongsTo(User, {
+  foreignKey: {
+    allowNull: false
+  }
+});
+
+////////////////////////////////////////////////////////////////////////////////
+// ROUTES
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -141,7 +151,9 @@ Lifestyle.belongsTo(User, { foreignKey: { allowNull: false } });
 
 app.get('/', (req, res) => {
   let user = req.session.user;
-  res.render('home', {user: user})
+  res.render('home', {
+    user: user
+  })
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +170,7 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 })
 
-app.post('/signup', (req,res) => {
+app.post('/signup', (req, res) => {
 
   let inputusername = req.body.username
   let inputfirstname = req.body.firstname
@@ -172,24 +184,24 @@ app.post('/signup', (req,res) => {
   if (inputpassword !== inputconfirmpassword) {
     res.send('Your password does not match');
   } else {
-  bcrypt.hash(inputpassword, saltRounds).then(hash => {
-  User.create({
-    username: inputusername,
-    firstname: inputfirstname,
-    lastname: inputlastname,
-    age: inputage,
-    about : inputabout,
-    email: inputemail,
-    password: hash,
-  })
+    bcrypt.hash(inputpassword, saltRounds).then(hash => {
+      User.create({
+          username: inputusername,
+          firstname: inputfirstname,
+          lastname: inputlastname,
+          age: inputage,
+          about: inputabout,
+          email: inputemail,
+          password: hash,
+        })
 
-  .then((user) => {
-        req.session.user = user;
-        res.redirect('/profile');
-      });
+        .then((user) => {
+          req.session.user = user;
+          res.redirect('/profile');
+        });
     })
   }
-  })
+})
 
 ////////////////////////////////////////////////////////////////////////////////
 // LOGIN AND CHECKING FOR MATCHING USER INPUT DATA
@@ -200,42 +212,45 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  const {email, password} = req.body;
-  if(email.length === 0) {
+  const {
+    email,
+    password
+  } = req.body;
+  if (email.length === 0) {
     res.redirect('/?message=' + encodeURIComponent("Please fill in your correct email."));
     return;
   }
-  if(password.length === 0) {
+  if (password.length === 0) {
     res.redirect('/?message=' + encodeURIComponent("Please fill in your password."));
     return;
   }
   User.findOne({
-		where: {
-			email: email
-		}
-	})
-  .then((user) => {
-    if(user !== undefined ) {
-      let hash = user.password;
-      bcrypt.compare(password, hash,(err, result) => {
-        req.session.user = user;
-        res.redirect('/profile');
-      });
-    } else {
-      res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+      where: {
+        email: email
+      }
+    })
+    .then((user) => {
+      if (user !== undefined) {
+        let hash = user.password;
+        bcrypt.compare(password, hash, (err, result) => {
+          req.session.user = user;
+          res.redirect('/profile');
+        });
+      } else {
+        res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////
 // LOG OUT
 
-app.get('/logout', (req,res)=>{
+app.get('/logout', (req, res) => {
   req.session.destroy(function(error) {
-    if(error) {
+    if (error) {
       throw error;
     }
     res.redirect('/?message=' + encodeURIComponent("Successfully logged out."));
@@ -245,25 +260,44 @@ app.get('/logout', (req,res)=>{
 ////////////////////////////////////////////////////////////////////////////////
 // PROFILE
 
-app.get('/profile', (req, res)=> {
+app.get('/profile', (req, res) => {
 
   const user = req.session.user;
-  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-  const lifestyle = {profession: req.body.lifestyle_profession ,sleep: req.body.lifestyle_sleep,smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+  const {
+    lifestyle_profession,
+    lifestyle_sleep,
+    lifestyle_smoking,
+    lifestyle_budget,
+    lifestyle_duration
+  } = req.body;
+  const lifestyle = {
+    profession: req.body.lifestyle_profession,
+    sleep: req.body.lifestyle_sleep,
+    smoking: req.body.lifestyle_smoking,
+    budget: req.body.lifestyle_budget,
+    duration: req.body.lifestyle_duration
+  };
 
-  if(user != null){
-  res.render('profile', {user: user, lifestyle: lifestyle})             // message: message
-}else{
+  if (user != null) {
+    res.render('profile', {
+      user: user,
+      lifestyle: lifestyle
+    })
+  } else {
     res.redirect('/')
-}
+  }
 })
 
 ////////////////////////////////////////////////////////////////////////////////
 // LIFESTYLE
 
 app.get('/lifestyle', (req, res) => {
-  const {user} = req.session;
-  res.render('lifestyle', {user: user})
+  const {
+    user
+  } = req.session;
+  res.render('lifestyle', {
+    user: user
+  })
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -271,20 +305,41 @@ app.get('/lifestyle', (req, res) => {
 
 app.post('/lifestyleconfirmation', (req, res) => {
   const user = req.session.user;
-  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-  const lifestyle = {profession: req.body.lifestyle_profession ,sleep: req.body.lifestyle_sleep,smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
+  const {
+    lifestyle_profession,
+    lifestyle_sleep,
+    lifestyle_smoking,
+    lifestyle_budget,
+    lifestyle_duration
+  } = req.body;
+  const lifestyle = {
+    profession: req.body.lifestyle_profession,
+    sleep: req.body.lifestyle_sleep,
+    smoking: req.body.lifestyle_smoking,
+    budget: req.body.lifestyle_budget,
+    duration: req.body.lifestyle_duration
+  };
 
-  res.render('lifestyleconfirmation', {user: user, lifestyle: lifestyle});
+  res.render('lifestyleconfirmation', {
+    user: user,
+    lifestyle: lifestyle
+  });
 })
 
 ////////////////////////////////////////////////////////////////////////////////
 // LIFESTYLE ADDED TO DB
 
 app.post('/lifestyle', (req, res) => {
-    const user = req.session.user;
-    const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  const user = req.session.user;
+  const {
+    lifestyle_profession,
+    lifestyle_sleep,
+    lifestyle_smoking,
+    lifestyle_budget,
+    lifestyle_duration
+  } = req.body;
 
-    Lifestyle.create({
+  Lifestyle.create({
       profession: lifestyle_profession,
       sleep: lifestyle_sleep,
       smoking: lifestyle_smoking,
@@ -292,10 +347,10 @@ app.post('/lifestyle', (req, res) => {
       duration: lifestyle_duration,
       userId: user.id,
     })
-    .then((lifestyle)=>{
+    .then((lifestyle) => {
       res.redirect('/profile')
     })
-    .catch((err)=>{
+    .catch((err) => {
       console.error(err);
     });
 })
@@ -305,161 +360,140 @@ app.post('/lifestyle', (req, res) => {
 
 app.get('/matches', (req, res) => {
   const user = req.session.user;
-  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
+  const {
+    lifestyle_profession,
+    lifestyle_sleep,
+    lifestyle_smoking,
+    lifestyle_budget,
+    lifestyle_duration
+  } = req.body;
 
-Lifestyle.findOne({
-  where: {
-    userId: user.id
-  },
-  include: [{
-    model: User
-  }]
-})
-
-.then((user_lifestyle)=>{
-  Lifestyle.findAll({
-    where: {
-      id: {
-        [Op.ne]: user_lifestyle.id
+  Lifestyle.findOne({
+      where: {
+        userId: user.id
       },
-      // profession: user_lifestyle.profession,
-      // sleep: user_lifestyle.sleep,
-      // smoking: user_lifestyle.smoking,
-      // budget: user_lifestyle.budget,
-      // duration: user_lifestyle.duration,
-
-     [Op.or]: [{
-      profession: user_lifestyle.profession,
-      sleep: user_lifestyle.sleep,
-      smoking: user_lifestyle.smoking,
-      budget: user_lifestyle.budget,
-    },{
-      profession: user_lifestyle.profession,
-      sleep: user_lifestyle.sleep,
-      smoking: user_lifestyle.smoking,
-      duration: user_lifestyle.duration,
-    },{
-        profession: user_lifestyle.profession,
-        sleep: user_lifestyle.sleep,
-        budget: user_lifestyle.budget,
-        duration: user_lifestyle.duration,
-    },{
-        profession: user_lifestyle.profession,
-        smoking: user_lifestyle.smoking,
-        budget: user_lifestyle.budget,
-        duration: user_lifestyle.duration,
-    },{
-        sleep: user_lifestyle.sleep,
-        smoking: user_lifestyle.smoking,
-        budget: user_lifestyle.budget,
-        duration: user_lifestyle.duration,
-    }]
-  }, include:[{
+      include: [{
         model: User
       }]
-  })
-.then((matches)=>{
-  console.log(JSON.stringify(matches))
+    })
 
-  if (matches === null) {
-    res.render('nomatch', {user: user, user_lifestyle: user_lifestyle, matches: matches})
-  }
-  else {
-  res.render('matches', {user: user, user_lifestyle: user_lifestyle, matches: matches})
-}
-})
-.catch(err => console.error(err))
-})
+    .then((user_lifestyle) => {
+      Lifestyle.findAll({
+          where: {
+            id: {
+              [Op.ne]: user_lifestyle.id
+            },
+            // profession: user_lifestyle.profession,
+            // sleep: user_lifestyle.sleep,
+            // smoking: user_lifestyle.smoking,
+            // budget: user_lifestyle.budget,
+            // duration: user_lifestyle.duration,
+
+            [Op.or]: [{
+              profession: user_lifestyle.profession,
+              sleep: user_lifestyle.sleep,
+              smoking: user_lifestyle.smoking,
+              budget: user_lifestyle.budget,
+            }, {
+              profession: user_lifestyle.profession,
+              sleep: user_lifestyle.sleep,
+              smoking: user_lifestyle.smoking,
+              duration: user_lifestyle.duration,
+            }, {
+              profession: user_lifestyle.profession,
+              sleep: user_lifestyle.sleep,
+              budget: user_lifestyle.budget,
+              duration: user_lifestyle.duration,
+            }, {
+              profession: user_lifestyle.profession,
+              smoking: user_lifestyle.smoking,
+              budget: user_lifestyle.budget,
+              duration: user_lifestyle.duration,
+            }, {
+              sleep: user_lifestyle.sleep,
+              smoking: user_lifestyle.smoking,
+              budget: user_lifestyle.budget,
+              duration: user_lifestyle.duration,
+            }]
+          },
+          include: [{
+            model: User
+          }]
+        })
+        .then((matches) => {
+          console.log(JSON.stringify(matches))
+
+          if (matches === null) {
+            res.render('nomatch', {
+              user: user,
+              user_lifestyle: user_lifestyle,
+              matches: matches
+            })
+          } else {
+            res.render('matches', {
+              user: user,
+              user_lifestyle: user_lifestyle,
+              matches: matches
+            })
+          }
+        })
+        .catch(err => console.error(err))
+    })
 })
 
 ////////////////////////////////////////////////////////////////////////////////
 // NO MATCH
 
 app.get('/nomatch', (req, res) => {
-  const {user} = req.session;
-  res.render('nomatch', {user: user})
+  const {
+    user
+  } = req.session;
+  res.render('nomatch', {
+    user: user
+  })
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-// ALL LIFESTYLES
+// ALL LIFESTYLES - COMING SOON
 
 app.get('/everylifestyle', (req, res) => {
   const user = req.session.user;
-  const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
+  const {
+    lifestyle_profession,
+    lifestyle_sleep,
+    lifestyle_smoking,
+    lifestyle_budget,
+    lifestyle_duration
+  } = req.body;
   const lifestyle = req.body.lifestyle;
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
 
-Lifestyle.findOne({
-  where: {
-    userId: user.id
-  },
-  include: [{
-    model: User
-  }]
-})
-
-.then((user_lifestyle)=>{
-  Lifestyle.findAll({
-     include:[{
+  Lifestyle.findOne({
+      where: {
+        userId: user.id
+      },
+      include: [{
         model: User
       }]
-  })
-.then((matches)=>{
-  console.log(JSON.stringify(matches))
-  res.render('everylifestyle', {user: user, user_lifestyle: user_lifestyle, matches: matches, lifestyle: lifestyle})
+    })
+
+    .then((user_lifestyle) => {
+      Lifestyle.findAll({
+          include: [{
+            model: User
+          }]
+        })
+        .then((matches) => {
+          console.log(JSON.stringify(matches))
+          res.render('everylifestyle', {
+            user: user,
+            user_lifestyle: user_lifestyle,
+            matches: matches,
+            lifestyle: lifestyle
+          })
+        })
+        .catch(err => console.error(err))
+    })
 })
-.catch(err => console.error(err))
-})
-})
-
-//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
-//   // const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-//   // const lifestyle = {profession: req.body.lifestyle_profession, sleep: req.body.lifestyle_sleep, smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
-// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+lifestyle.profession)
-//
-//   for (let i = 0; i < lifestyle.length; i++) {
-//     if (req.body.lifestyle_profession == lifestyle[i].profession &&
-//         req.body.lifestyle_sleep == lifestyle[i].sleep &&
-//         req.body.lifestyle_smoking == lifestyle[i].smoking &&
-//         req.body.lifestyle_budget == lifestyle[i].budget &&
-//         req.body.lifestyle_duration == lifestyle[i].duration) {
-//        let match = lifestyle[i].user;
-//
-// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+match)
-//         res.render('matches', {
-//           user: match,
-//         });
-//       }}
-// })
-
-// app.post('/matches', (req, res) => {
-//   const user = req.session.user;
-//   console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+user)
-//   const {lifestyle_profession, lifestyle_sleep, lifestyle_smoking, lifestyle_budget, lifestyle_duration} = req.body;
-//   const lifestyle = {profession: req.body.lifestyle_profession, sleep: req.body.lifestyle_sleep, smoking: req.body.lifestyle_smoking ,budget: req.body.lifestyle_budget,duration: req.body.lifestyle_duration};
-// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+lifestyle)
-//
-//   for (let i = 0; i < lifestyle.length; i++) {
-//     if (req.body.lifestyle_profession == lifestyle[i].profession &&
-//         req.body.lifestyle_sleep == lifestyle[i].sleep &&
-//         req.body.lifestyle_smoking == lifestyle[i].smoking &&
-//         req.body.lifestyle_budget == lifestyle[i].budget &&
-//         req.body.lifestyle_duration == lifestyle[i].duration) {
-//        let match = lifestyle[i].user;
-//
-// console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+match)
-//         res.render('matches', {
-//           user: match,
-//         });
-//       }}
-//   })
-
-
-  //     res.render('matched', {match: matchedUser, user: user, lifestyle: lifestyle});
-  //   }
-  // }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // MESSAGING
@@ -469,12 +503,14 @@ app.get('/messages', (req, res) => {
 })
 
 ////////////////////////////////////////////////////////////////////////////////
-                // START SERVER AND SEQUELIZE
+// START SERVER AND SEQUELIZE
 ////////////////////////////////////////////////////////////////////////////////
 
-sequelize.sync({force: false})
-.then(() => {
-  const server = app.listen(3000, () => {
-    console.log('App is running on port 3000');
+sequelize.sync({
+    force: false
   })
-})
+  .then(() => {
+    const server = app.listen(3018, () => {
+      console.log('App is running on port 3018');
+    })
+  })

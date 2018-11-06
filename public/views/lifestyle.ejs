@@ -6,23 +6,23 @@
 
 <body>
 
-<header>
-      <%- include partials/header.ejs %>
-</header>
+  <header>
+    <%- include partials/header.ejs %>
+  </header>
 
-    <div class="texttitle">
-      <strong>Please answer the following questions</strong>
-    </div>
+  <div class="texttitle">
+    <strong>Please answer the following questions</strong>
+  </div>
 
-    <h4>Tell us about your lifestyle and your intentions. We will use these answers to find your ideal roommate.</h4>
+  <h4>Tell us about your lifestyle and your intentions. We will use these answers to find your ideal roommate.</h4>
 
-    <div class="container dealsearch">
-      <div class="col-lg-12">
-        <div class="row">
-          <form id="lifestyle" action="/lifestyleconfirmation" method="POST" autocomplete="off">
+  <div class="container dealsearch">
+    <div class="col-lg-12">
+      <div class="row">
+        <form id="lifestyle" action="/lifestyleconfirmation" method="POST" autocomplete="off">
 
-            <div class="col-lg-12">
-              <label class="form-label" for="profession">
+          <div class="col-lg-12">
+            <label class="form-label" for="profession">
                 <span class="form-select">
                   <select name="lifestyle_profession" id="lifestyle_profession">
                     <option data-display="Profession">Profession</option>
@@ -33,7 +33,7 @@
                 </span>
               </label>
 
-              <label class="form-label" for="sleep">
+            <label class="form-label" for="sleep">
                 <span class="form-select">
                   <select name="lifestyle_sleep" id="lifestyle_sleep">
                     <option data-display="Profession">Sleep</option>
@@ -43,7 +43,7 @@
                 </span>
               </label>
 
-              <label class="form-label" for="smoking">
+            <label class="form-label" for="smoking">
                 <span class="form-select">
                   <select name="lifestyle_smoking" id="lifestyle_smoking">
                     <option data-display="Smoking">Smoking</option>
@@ -53,7 +53,7 @@
                 </span>
               </label>
 
-              <label class="form-label" for="budget">
+            <label class="form-label" for="budget">
                 <span class="form-select">
                   <select name="lifestyle_budget" id="lifestyle_budget">
                     <option data-display="Budget">Budget</option>
@@ -64,31 +64,30 @@
                 </span>
               </label>
 
-              <label class="form-label" for="duration">
+            <label class="form-label" for="duration">
                 <span class="form-select">
                   <select name="lifestyle_duration" id="lifestyle_duration">
                     <option data-display="Duration">Duration</option>
                     <option value="< 6 months">< 6 months</option>
                     <option value="6 - 12 months">6 - 12 months</option>
-                    <option value="> €800">> 12 months</option>
+                    <option value="> 12 months">> 12 months</option>
                   </select>
                 </span>
               </label>
 
-
-            </div>
-            <div class="col-lg-12">
-              <button type="submit" class="btn btn-default">Submit</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div class="col-lg-12">
+            <button type="submit" class="btn btn-hero btn-sm">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
-<footer>
-  <%- include partials/footer.ejs %>
-</footer>
+  <footer>
+    <%- include partials/footer.ejs %>
+  </footer>
 
 </body>
+
 </html>

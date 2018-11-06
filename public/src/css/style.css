@@ -1,8 +1,8 @@
 body  {
-background-color: white;
+  background-color: white;
 }
 
-/* Home Page Fade on logo */
+/* Home Page logo fade & image*/
 
 #cf2 {
   position:relative;
@@ -20,61 +20,33 @@ background-color: white;
 }
 
 #cf2 img.transparent {
-opacity:0;
+  opacity:0;
 }
 #cf_onclick {
-cursor:crosshair;
+  cursor:crosshair;
 }
 
 img {
-  /* max-width: 100%; */
-  /* height: auto; */
   position: fized;
-top: 50px;
-right: 5px;
-/* font-size: 18px; */
-/* cursor: pointer; */
+  top: 50px;
+  right: 5px;
 }
 
 .shadow {
-    position: relative;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
-/* .center {
-    position: absolute;
-    left: 0;
-    top: 10%;
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-} */
 
 img {
-    width: 767;
-    height: 400;
+  width: 767;
+  height: 400;
 }
 
-
-/* img {
-    opacity: 0.1;
-
-    -webkit-transition: opacity 2s ease-in;
-       -moz-transition: opacity 2s ease-in;
-        -ms-transition: opacity 2s ease-in;
-         -o-transition: opacity 2s ease-in;
-            transition: opacity 2s ease-in;
-}
-
-img.load {
-    opacity: 1;
-} */
-
-/* h1 - h6 */
+/*=====h1-h6 & p=======*/
 
 h1 {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
@@ -84,20 +56,9 @@ h1 {
   font-weight: 700;
   line-height: 26.4px;
   text-align: center;
-    /* background-color:  rgba(0, 0, 0, 0.4); */
-    padding-left: 10%;
-    padding-right: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
-
-
-/* h1 {
-  text-align: center;
-  color: black;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  font-family: Verdana;
-  font-weight: bold;
-} */
 
 h2 {
   text-align: center;
@@ -117,15 +78,14 @@ h4 {
   text-align: center;
   color: black;
   font-size: 18px;
-  /* padding-left: 100px; */
 }
 
 h5 {
   font-size: 14px;
   color: black;
   text-align: left;
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-    padding-left: 100px;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  padding-left: 100px;
 }
 
 h6 {
@@ -191,42 +151,16 @@ table table-hover {
 
 .btn {
   background-color: red;
+  border-color: black;
   color: white;
 }
 
 .button_search {
+  border-color: black;
   color: red;
 }
 
 /*===================*/
-
-.bgdrinks {
-  background-image: url(/src/img/tulip_key_xx.png);
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  opacity: 0.1;
-  width: 400px;
-  height: 800px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-top: 5%;
-}
-
-.fadedkeyright {
-  background-image: url(/src/img/tulip_key_xx.png);
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  opacity: 0.1;
-  width: 150px;
-  height: 300px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding-top: 5%;
-}
 
 .logosmall {
   background-image: url(/src/img/tulip_key_xx.png);
@@ -295,30 +229,6 @@ table table-hover {
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
   text-align: center;
   font-size: 36px;
-}
-
-.column_1 {
-  width: 200px;
-  margin-bottom: 10px;
-  padding: 8px;
-}
-
-.column_2 {
-  width: 400px;
-  margin-bottom: 10px;
-  padding: 8px;
-}
-
-.column_3 {
-  width: 200px;
-  margin-bottom: 10px;
-  padding: 4px;
-}
-
-.column_4 {
-  width: 400px;
-  margin-bottom: 10px;
-  padding: 4px;
 }
 
 .mb-60 {
@@ -658,13 +568,13 @@ table table-hover {
 }
 
 .table-dark {
-    color: white;
-    background-color: grey;
-    width: 90%;
-    margin-right: 5%;
-    margin-left: 5%;
-    background-color:  rgba(0, 0, 0, 1);
-    padding: 2px;
+  color: white;
+  background-color: grey;
+  width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
+  background-color:  rgba(0, 0, 0, 1);
+  padding: 2px;
 }
 
 .row {
@@ -672,88 +582,88 @@ table table-hover {
 }
 
 .how-section1 {
- margin-top:-15%;
- padding: 10%;
+  margin-top:-15%;
+  padding: 10%;
 }
 
 .how-section1 h4 {
- color: #ffa500;
- font-weight: bold;
- font-size: 30px;
+  color: #ffa500;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .how-section1 .subheading {
- color: #3931af;
- font-size: 20px;
+  color: #3931af;
+  font-size: 20px;
 }
 
 .how-section1 .row {
- margin-top: 10%;
+  margin-top: 10%;
 }
 
 .how-img {
- text-align: center;
+  text-align: center;
 }
 
 .how-img img {
- width: 40%;
+  width: 40%;
 }
 
 .mb-60 {
- margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .services-inner {
- border: 2px solid #000000;
- margin-left: 35px;
- background-color: rgba(0, 0, 0, 0.9);
- transition: .3s;
+  border: 2px solid #000000;
+  margin-left: 35px;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: .3s;
 }
 
 .our-services-img {
- text-align: center;
+  text-align: center;
 }
 
 .our-services-text {
- text-align: center;
- padding-right: 10px;
+  text-align: center;
+  padding-right: 10px;
 }
 
 .our-services-text {
- text-family: Helvetica;
- text-align: center;
- padding: 28px 0 28px;
+  text-family: Helvetica;
+  text-align: center;
+  padding: 28px 0 28px;
 }
 
 .our-services-text h4 {
- color: white;
- font-size: 18px;
- font-weight: 700;
- letter-spacing: 1px;
- margin-bottom: 16px;
- padding-bottom: 10px;
- position: relative;
- text-transform: uppercase;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  position: relative;
+  text-transform: uppercase;
 }
 
 .our-services-text h4::before {
- background: red none repeat scroll 0 0;
- bottom: 0;
- content: "";
- height: 1px;
- position: absolute;
- width: 35px;
+  background: red none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 1px;
+  position: absolute;
+  width: 35px;
 }
 
 .our-services-wrapper:hover .services-inner {
- background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
- border: 2px solid transparent;
- box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+  border: 2px solid transparent;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
 }
 
 .our-services-text p {
- color: white;
- margin-bottom: 0;
+  color: white;
+  margin-bottom: 0;
 }
 
 .our-services-img img {
@@ -764,46 +674,31 @@ table table-hover {
   min-height: 600px;
 }
 
-/* //////////////////////////// JQUERY PANELS */
-
-/* #panel, #flip {
-    padding: 5px;
-    text-align: center;
-    background-color: grey;
-    border: solid 1px #c3c3c3;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-#panel {
-    padding: 50px;
-    display: none;
-    background-color: white;
-} */
+/* jQuery Panels */
 
 #panel, #panel2, #panel3, #panel4, #flip, #flip2, #flip3, #flip4 {
-padding: 5px;
-font-size: 20px;
-font-family: helvetica, sans-serif;
-text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-/* border: solid 2px #DE6131; */
-cursor: pointer;
-margin-left: 5%;
-margin-right: 5%;
+  padding: 5px;
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  /* border: solid 2px #DE6131; */
+  cursor: pointer;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 #panel, #panel2, #panel3, #panel4 {
-padding: 5px;
-font-family: helvetica, sans-serif;
-background-color: rgba(0, 0, 0, 0.6);
-display: none;
-text-align: left;
+  padding: 5px;
+  font-family: helvetica, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  text-align: left;
 }
 
 #flip, #flip2, #flip3, #flip4 {
-background-size: cover;
+  background-size: cover;
 }
 
 .fade {
@@ -813,36 +708,30 @@ background-size: cover;
    -webkit-transition: opacity .25s ease-in-out;
    }
 
-   .fade:hover {
-      opacity: 1;
+.fade:hover {
+  opacity: 1;
+}
 
+.column_1 {
+  width: 200px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
 
-      .column_1 {
-        width: 200px;
-          margin-bottom: 10px;
-          padding: 8px;
-      }
+.column_2 {
+  width: 400px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
 
-      .column_2 {
-        width: 400px;
-            margin-bottom: 10px;
-            padding: 8px;
-      }
+.column_3 {
+  width: 200px;
+  margin-bottom: 10px;
+  padding: 4px;
+}
 
-      .column_3 {
-        width: 200px;
-            margin-bottom: 10px;
-            padding: 4px;
-      }
-
-      .column_4 {
-        width: 400px;
-            margin-bottom: 10px;
-            padding: 4px;
-      }
-
-      /* .column_5 {
-        width: 100px;
-            margin-bottom: 10px;
-            padding: 4px;
-      } */
+.column_4 {
+  width: 400px;
+  margin-bottom: 10px;
+  padding: 4px;
+}

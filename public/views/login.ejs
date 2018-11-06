@@ -2,38 +2,37 @@
 
 <head>
   <%- include partials/head.ejs %>
-  <link rel="stylesheet" href="src/css/signin.css">
-</head><!-- /head -->
+</head>
 
 <body>
   <header>
     <%- include partials/header.ejs %>
-  </header><!-- /header -->
+  </header>
 
   <div class="fadedkeyright"></div>
 
   <div class="texttitle"><strong>LOGIN</strong></div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <p class="form-title">
-        Login to your account
-      </p>
-      <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-          <form class="login" id="login" action="/login" method="POST">
-            <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" />
-            <input type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp" minlength="8" placeholder="Password" />
-            <input type="submit" value="Login" class="btn btn-hero btn-sm" />
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="form-title">
+          Login to your account
+        </p>
+        <div class="row">
+          <div class="col-lg-4 col-lg-offset-4">
+            <form class="login" id="login" action="/login" method="POST">
+              <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" />
+              <input type="password" name="password" class="form-control" id="password" aria-describedby="passwordHelp" minlength="8" placeholder="Password" />
+              <input type="submit" value="Login" class="btn btn-hero btn-sm" />
           </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<h2>Before you find a room in Amsterdam, find a room<span class="bold red">mate</span> in Amsterdam.<h2>
+  <h2>Before you find a room in Amsterdam, find a room<span class="bold red">mate</span> in Amsterdam.<h2>
 
 <br><br>
 <br>

@@ -313,3 +313,17 @@ _- Come up with a timeline of goals to stick to._
 #### Saturday 03 November onwards
 
 - The rest of my life :)
+
+#### Bug Fixing and Functionality to Add:
+
+  Short-term
+
+- Add a route called **everylifestyle** where I can see each user and their lifestyle choices
+- If there are no matching users render a **nomatch** page
+- Fix the error on the login page when a user tries to sign in with incorrect details
+- Fix text inside flip and panel
+
+  Long-term
+
+- Add functionality for 'good matches' and 'excellent matches'
+- Add a messaging functionality

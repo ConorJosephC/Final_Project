@@ -1,71 +1,69 @@
 <html>
 
 <head>
- <%- include partials/head.ejs %>
-</head><!-- /head -->
+  <%- include partials/head.ejs %>
+</head>
 
 <body>
 
- <header>
- <%- include partials/header.ejs %>
- </header>
+  <header>
+    <%- include partials/header.ejs %>
+  </header>
 
-<!-- <div class="texttitle"><strong>Profile</strong></div> -->
-<!-- <h1>Hello World</h1> -->
-<!-- <h2>Welcome to your profile <%= user.username %></h2> -->
   <div class="texttitle"><strong>WELCOME TO YOUR PROFILE <%= user.username %></strong></div>
 
-<div class="container">
-  <div class="card-deck">
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title"><strong>1. Lifestyle</strong></h1><br>
-        <p class="card-text">Please answer 5 questions about your lifestyle.<br><br>
+  <div class="container">
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title"><strong>1. Lifestyle</strong></h1><br>
+          <p class="card-text">Please answer 5 questions about your lifestyle.<br><br>
           We would like to know about:<br>
           1. Work / Study<br>
           2. Early Bird / Night Owl<br>
           3. Smoker / Non-Smoker<br>
           4. Your Budget<br>
           5. How Long You're Staying?
-          <span class="bold red"></span></p>
+        </div>
+        <div class="card-footer"><a href="/lifestyle"><button class="btn btn-hero btn-lg" role="button">Lifestyle Quiz</button></a>
+          <small class="text-muted"></small>
+        </div>
       </div>
-      <div class="card-footer"><a href="/lifestyle"><button class="btn btn-hero btn-lg" role="button">Lifestyle Quiz</button></a>
-        <small class="text-muted"></small>
+
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title"><strong>2. Matches</strong></h1><br>
+          <p class="card-text">
+          The more answers you have in common, the stronger the recommendation that another user would be a good (or excellent) room<span class="bold red">mate</span><br><br>
+          Then you can contact the matching users and arrange to meet up if you wish.
+          </p>
+        </div>
+        <div class="card-footer"><a href="/matches"><button class="btn btn-hero btn-lg" role="button">Matches</button></a>
+          <small class="text-muted"></small>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title"><strong>2. Matches</strong></h1><br>
-        <p class="card-text">
-The more answers you have in common, the stronger the recommendation that another user would be a good (or excellent) room<span class="bold red">mate</span><br><br>
-Then you can contact the matching users and arrange to meet up if you wish.
-  </p>
-      </div>
-      <div class="card-footer"><a href="/matches"><button class="btn btn-hero btn-lg" role="button">Matches</button></a>
-        <small class="text-muted"></small>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h1 class="card-title"><strong>3. Messages</strong></h1><br>
-        <p class="card-text">Communicate with other users who you have matched with.<br><br>You can choose what personal information you share with them.<br><br>
-    You can also see your conversation history with each user.<br><br></p>
-      </div>
-      <div class="card-footer"> <a href="/messages"><button class="btn btn-hero btn-lg" role="button">Messages</button></a>
-        <small class="text-muted"></small>
+
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title"><strong>3. Messages</strong></h1><br>
+          <p class="card-text">
+          Communicate with other users who you have matched with.<br><br>You can choose what personal information you share with them.<br><br>
+          You can also see your conversation history with each user.<br><br></p>
+        </div>
+        <div class="card-footer"> <a href="/messages"><button class="btn btn-hero btn-lg" role="button">Messages</button></a>
+          <small class="text-muted"></small>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 
-<ul>
-      <a href="/logout"><button class="btn btn-hero btn-sm" role="button">Logout</button></a>
-</ul>
+  <ul>
+    <a href="/logout"><button class="btn btn-hero btn-sm" role="button">Logout</button></a>
+  </ul>
 
-<footer>
- <%- include partials/footer.ejs %>
-</footer>
+  <footer>
+    <%- include partials/footer.ejs %>
+  </footer>
 
 </body>
 
