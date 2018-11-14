@@ -1,5 +1,13 @@
 # _Individual Project Design Brief / Project Specifications_
 
+Before you find a room in Amsterdam....
+
+![Lifestyle Ideas](./public/src/img/homepage.jpg)
+
+Find a roomMATE in Amsterdam
+
+![Lifestyle Ideas](./public/src/img/homepage_click.jpg)
+
 # _Design Brief:_
 
 _State the purpose of your application clearly and concisely. Try to do it in a single sentence._
@@ -310,20 +318,14 @@ _- Come up with a timeline of goals to stick to._
 - Last minute fixes and improvements
 - Final presentation
 
-#### Saturday 03 November onwards
-
-- The rest of my life :)
-
 #### Bug Fixing and Functionality to Add:
 
-  Short-term
+Short-term
 
-- Add a route called **everylifestyle** where I can see each user and their lifestyle choices
 - If there are no matching users render a **nomatch** page
 - Fix the error on the login page when a user tries to sign in with incorrect details
-- Fix text inside flip and panel
 
-  Long-term
+Long-term
 
 - Add functionality for 'good matches' and 'excellent matches'
 - Add a messaging functionality

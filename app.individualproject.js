@@ -423,13 +423,15 @@ app.get('/matches', (req, res) => {
         .then((matches) => {
           console.log(JSON.stringify(matches))
 
+for (let i = 0; i < matches.length; i++) {
           if (matches === null) {
             res.render('nomatch', {
               user: user,
               user_lifestyle: user_lifestyle,
               matches: matches
             })
-          } else {
+          }
+        } if (matches !== null) {
             res.render('matches', {
               user: user,
               user_lifestyle: user_lifestyle,

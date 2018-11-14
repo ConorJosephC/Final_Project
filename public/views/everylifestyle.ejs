@@ -10,13 +10,17 @@
     <%- include partials/header.ejs %>
   </header>
 
-  <div class="texttitle"><strong>HERE ARE YOUR IDEAL HOUSEMATES <%- user.username %></strong></div>
+  <div class="texttitle"><strong>Here are all the users in the system.</strong></div>
 
   <table class="table table-dark">
     <thead class="row">
       <tr>
         <td>Username</td>
-        <td>About</td>
+        <td>Profession</td>
+        <td>Sleep</td>
+        <td>Smoking</td>
+        <td>Budget</td>
+        <td>Duration</td>
       </tr>
     </thead>
 
@@ -24,10 +28,22 @@
       <tr>
         <% for (let i= 0; i < matches.length; i++) { %>
         <td>
-          <%- matches[i].lifesyle_smoking %>
+          <%- matches[i].user.username %>
         </td>
         <td>
-          <%- matches[i].user.about %>
+          <%- matches[i].profession %>
+        </td>
+        <td>
+          <%- matches[i].sleep %>
+        </td>
+        <td>
+          <%- matches[i].smoking %>
+        </td>
+        <td>
+          <%- matches[i].budget %>
+        </td>
+        <td>
+          <%- matches[i].duration %>
         </td>
       </tr>
 
